@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import CircularProgress from '@mui/material/CircularProgress';
 function Read() {
   const [data, setData] = useState([]);
+  const [len, SetLen] = useState([]);
   const [message, setMessage] = useState([]);
   let deleteImg = (id) => {
     if (id === '')
@@ -60,8 +61,9 @@ function Read() {
       mode: "cors",
     }).then((res) => res.json()).then((res) => {
       setData(res);
+      SetLen(res.length);
     })
-  }, [data.length])
+  }, [len])
   let deleteHero = (id) => {
     fetch("https://back-test-crud.herokuapp.com/delete", {
       method: "POST",
