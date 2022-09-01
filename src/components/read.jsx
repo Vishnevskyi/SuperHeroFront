@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import CircularProgress from '@mui/material/CircularProgress';
 function Read() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState([]);
   let deleteImg = (id) => {
     if (id === '')
@@ -60,6 +61,7 @@ function Read() {
       mode: "cors",
     }).then((res) => res.json()).then((res) => {
       setData(res);
+      setLoading(true);
     })
   }, [data])
   let deleteHero = (id) => {
@@ -75,7 +77,7 @@ function Read() {
   return (
     <div>
     <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
-      {data.length === 0 || data === undefined ? <div style={{position: "absolute", top: "50%",left: "50%"}}><CircularProgress/></div> : data.map((res) => (
+      {loading === false || data === undefined ? <div style={{position: "absolute", top: "50%",left: "50%"}}><CircularProgress/></div> : data.map((res) => (
         <div style={{ width: "400px", marginBottom: "2em" }} key={res.id}>
           <Accordion>
             <AccordionSummary>
