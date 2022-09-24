@@ -63,7 +63,7 @@ function Read() {
       setData(res);
       setLoading(true);
     })
-  }, [data])
+  }, [])
   let deleteHero = (id) => {
     fetch("https://back-test-crud.herokuapp.com/delete", {
       method: "POST",
